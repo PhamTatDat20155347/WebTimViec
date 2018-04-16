@@ -26,4 +26,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function cv(){
+        return $this->hasOne('App\Cv','users_id','id');
+    }
+    public function recruitment(){
+        return $this->hasManyThrough('App\Recruitment','App\Cv','user_id','cv_id','id');
+    }
+    public function post(){
+        return $this->hasMany('App\Post','user_id','id');
+    }
+    public function recruitmentNTD(){
+        return $this->hasManyThrough('App\Recruitment','App\Post','user_id','post_id','id');
+    }
 }
