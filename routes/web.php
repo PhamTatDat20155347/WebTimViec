@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 // trang chủ
@@ -31,7 +31,6 @@ Route::get('tatcavieclam','PagesController@tatcavieclam');
 
 Route::get('dangxuat','PagesController@dangxuat');
 
-Route::post('timkiem','PagesController@timkiem');
 //dang ký
 Route::get('dangky','PagesController@getdangky');
 Route::post('dangky','PagesController@postdangky');
@@ -86,4 +85,47 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 	// Route::group(['prefix'=>'ajax'],function(){
 	// 	Route::get('loaitin/{idTheLoai}','AjaxController@getLoaiTin');
 	// });
+});
+
+
+// nhà tuyển dụng
+Route::get('dangkyntd','RecruitersController@getdangkyntd');
+Route::post('dangkyntd','RecruitersController@postdangkyntd');
+Route::group(['prefix'=>'nhatuyendung'],function(){
+	Route::get('trangchu','RecruitersController@trangchu');
+
+	Route::get('loaitin/{id}/{TenKhongDau}.html','RecruitersController@loaitin');
+	Route::get('tintuc/{id}/{TenKhongDau}.html','RecruitersController@tintuc');
+
+	Route::get('dangnhap','RecruitersController@getdangnhap');
+	Route::post('dangnhap','RecruitersController@postdangnhap');
+
+	Route::get('dangxuat','RecruitersController@dangxuat');
+	Route::get('dangxuatAll','RecruitersController@dangxuatAll');
+
+// quản lí người dùng
+	Route::get('thongtin','RecruitersController@getthongtin');
+	Route::post('thongtin','RecruitersController@postthongtin');
+
+//dang ký
+	Route::get('dangky','RecruitersController@getdangky');
+	Route::post('dangky','RecruitersController@postdangky');
+
+	Route::get('danhsach','RecruitersController@danhsach');
+	Route::get('baipost/{id}.html','RecruitersController@baipost');
+
+	Route::get('them','RecruitersController@getThem');
+	Route::post('them','RecruitersController@postThem');
+
+	Route::get('sua/{id}','RecruitersController@getSua');
+	Route::post('sua/{id}','RecruitersController@postSua');
+
+	Route::get('xoa/{id}','RecruitersController@xoa');
+
+	Route::get('danhsachcv','RecruimentController@danhsachcv');
+
+	Route::get('xemcv/{id}','RecruimentController@xemcv');
+	Route::get('chapnhancv/{iduser}/{idcv}','RecruimentController@chapnhancv');
+//tìm kiếm
+	Route::post('timkiem','RecruitersController@timkiem');
 });
